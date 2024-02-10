@@ -1,6 +1,6 @@
-import Attack from "./Attack"
-import Defense from "./Defense/Defense"
-import { ThrowResult } from "./Throw"
+import Attack from './Attack/Attack.js'
+import Defense from './Defense/Defense.js'
+import { ThrowResult } from './Throw.js'
 
 export default class Fighter {
   private name : string

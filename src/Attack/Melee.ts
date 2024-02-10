@@ -1,7 +1,9 @@
-import Throw, {ThrowResult} from './Throw.js'
-import Weapon from './Weapon/Weapon.js'
+import Fighter from '../Fighter.js'
+import Throw, {ThrowResult} from '../Throw.js'
+import Weapon from '../Weapon/Weapon.js'
+import Attack from './Attack.js'
 
-export default class Attack {
+export default class Melee implements Attack {
   private chance: number
   private weapon: Weapon
   constructor(chance: number, weapon) {
@@ -9,7 +11,7 @@ export default class Attack {
     this.weapon = weapon
   }
 
-  resolve(target): void{
+  resolve(target: Fighter): void{
     //tirar dados
     const attackResult = Throw.dice(this.chance)
 
@@ -27,3 +29,4 @@ export default class Attack {
     target.injure(damage)
   }
 }
+

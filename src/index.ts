@@ -1,4 +1,4 @@
-import Attack from './Attack.js'
+import Melee from './Attack/Melee.js'
 import Fighter from './Fighter.js'
 import Weapon  from './Weapon/Weapon.js'
 import Sword from './Weapon/Sword.js'
@@ -7,14 +7,12 @@ import Defense from './Defense/Defense.js'
 import Dodge from './Defense/Dodge.js'
 
 function createFighter (name: string, attackChance: number, weapon: Weapon, defence: Defense, health: number, initiative: number) {
-  const attack = new Attack(attackChance, weapon )
+  const attack = new Melee(attackChance, weapon )
   return new Fighter(name, attack, defence, health, initiative)
 }
 
-
 const harlot = createFighter('The Harlot', 50, new Sword(), new Dodge(10), 50, 60)
 const james = createFighter('James Westmore', 60, new Claw(), new Dodge(60), 14, 70)
-
 
 function sort(figthers) {
   return figthers.sort((a, b) => a.compareTo(b))
