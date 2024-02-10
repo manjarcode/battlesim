@@ -1,0 +1,21 @@
+{
+  "name": "battlesim",
+  "version": "1.0.0",
+  "description": "Role-playing games battle simulator",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manjarcode/battlesim.git"
+  },
+  "author": "manjarcode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manjarcode/battlesim/issues"
+  },
+  "homepage": "https://github.com/manjarcode/battlesim#readme"
+}
