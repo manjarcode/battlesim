@@ -1,5 +1,5 @@
 export default class Weapon {
-  getDamage() {
+  getDamage(): number {
     return 4
   }
 }
