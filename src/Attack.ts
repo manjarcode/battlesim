@@ -1,5 +1,5 @@
 import Throw, {ThrowResult} from './Throw.js'
-import Weapon from './Weapon.js'
+import Weapon from './Weapon/Weapon.js'
 
 export default class Attack {
   private chance: number

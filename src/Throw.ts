@@ -26,8 +26,32 @@ export enum ThrowResult {
   FAIL=0
 }
 
-class Dice {
+export class Dice {
   static roll(): number {
     return Math.round(Math.random()*100)
+  }
+  
+  static customDice(sides: number): number {
+    return Math.round(Math.random()*sides)
+  }
+
+  static d4(): number {
+    return this.customDice(4)
+  }
+
+  static d6(): number {
+    return this.customDice(6)
+  }
+
+  static d8(): number {
+    return this.customDice(8)
+  }
+
+  static d10(): number {
+    return this.customDice(10)
+  }
+
+  static d12(): number {
+    return this.customDice(12)
   }
 }
