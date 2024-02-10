@@ -17,6 +17,12 @@ export default class Fighter {
     this.initiative = initiative
   }
 
+  attackOneOf(group) {
+    const fighters = group.getFighters()
+    const target = fighters[Math.floor(Math.random() * fighters.length)]
+    this.attackTo(target)
+  }
+
   attackTo(target) {
     console.log(`${this.name} attacked to ${target.getName()}`)
     this.attack.resolve(target)
@@ -28,7 +34,7 @@ export default class Fighter {
 
   injure(damage) {
     this.health -= damage
-    console.log(`Fighter ${this.name} was injured with ${damage}, current health: ${this.health}`)
+    console.log(` => ${this.name} was injured with ${damage}, current health: ${this.health}`)
   }
 
   isAlive() {
