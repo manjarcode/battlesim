@@ -1,6 +1,7 @@
-import Throw, { ThrowResult } from './Throw.js'
+import Throw, { ThrowResult } from "../Throw.js"
+import Defense from "./Defense.js"
 
-export default class Dodge {
+export default class Dodge implements Defense {
   private chance : number
   constructor(chance) {
       this.chance = chance

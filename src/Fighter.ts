@@ -1,15 +1,15 @@
 import Attack from "./Attack"
-import Dodge from "./Defense"
+import Defense from "./Defense/Defense"
 import { ThrowResult } from "./Throw"
 
 export default class Fighter {
   private name : string
   private attack: Attack
-  private defense: Dodge
+  private defense: Defense
   private health: number
   private initiative: number
 
-  constructor(name: string, attack: Attack, defence: Dodge, health: number, initiative: number) {
+  constructor(name: string, attack: Attack, defence: Defense, health: number, initiative: number) {
     this.name = name
     this.attack = attack
     this.defense = defence
