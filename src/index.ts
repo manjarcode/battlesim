@@ -6,6 +6,7 @@ import Claw from './Weapon/Claw.js'
 import Defense from './Defense/Defense.js'
 import Dodge from './Defense/Dodge.js'
 import Group from './Group.js'
+import Counter from './Defense/Counter.js'
 
 function createFighter (name: string, attackChance: number, weapon: Weapon, defence: Defense, health: number, initiative: number) {
   const attack = new Melee(attackChance, weapon )
@@ -13,7 +14,7 @@ function createFighter (name: string, attackChance: number, weapon: Weapon, defe
 }
 
 const beastTeam = new Group('Beast Team', [
-  createFighter('The Beast', 50, new Claw(), new Dodge(10), 50, 60)
+  createFighter('The Beast', 50, new Claw(), new Counter(30), 50, 60)
 ])
 
 const playersTeam = new Group('Players Team', [

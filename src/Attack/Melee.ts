@@ -17,14 +17,7 @@ export default class Melee implements Attack {
     //tirar dados
     const attackResult = Throw.dice(this.chance)
 
-    const isSuccessful = attackResult >= ThrowResult.EASY
-   
     return target.defend(attackResult)
-
-    // console.log(`attack result: ${attackResult} can be defended? ${canDefence}`)
-    // if (isSuccessful && !canDefence) {
-    //   this.applyDamage(target)
-    // }
   }
 
   applyDamage(target): void {

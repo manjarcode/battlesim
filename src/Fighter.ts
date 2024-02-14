@@ -29,16 +29,16 @@ export default class Fighter {
     const assaultResult = this.attack.resolve(target)
 
     if(assaultResult === AssaultResult.DEFENDED) {
-      console.log(`${target.getName()} defended the attack`)
+      console.log(`  ${target.getName()} blocked the attack`)
     }
 
     if (assaultResult === AssaultResult.ATTACKED) {
-      console.log(`${target.getName()} was attacked`)
-      this.attack.applyDamage(target)
+      console.log(`  ${target.getName()} was attacked`)
+      this.applyDamage(target)
     }
 
     if (assaultResult === AssaultResult.COUNTERED) {
-      console.log(`${target.getName()} counter attacked`)
+      console.log(`  ${target.getName()} counter attacked`)
       target.applyDamage(this)
     }
   }
@@ -48,13 +48,12 @@ export default class Fighter {
   }
 
   applyDamage(target): void {
-    const damage = this.attack.applyDamage(target)
-    target.injure(damage)
+    this.attack.applyDamage(target)
   }
 
   injure(damage) {
     this.health -= damage
-    console.log(` => ${this.name} was injured with ${damage}, current health: ${this.health}`)
+    console.log(`    ${this.name} was injured with ${damage}, current health: ${this.health}`)
   }
 
   canCounterAttack() : boolean {
