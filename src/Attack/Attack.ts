@@ -1,5 +1,8 @@
 import Fighter from "../Fighter";
+import { AssaultResult } from "./AssaultResult";
 
 export default interface Attack {
-  resolve(target: Fighter): void
+  resolve(target: Fighter): AssaultResult
+  
+  applyDamage(target): void
 }

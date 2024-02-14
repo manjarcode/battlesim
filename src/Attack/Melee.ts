@@ -1,6 +1,7 @@
 import Fighter from '../Fighter.js'
 import Throw, {ThrowResult} from '../Throw.js'
 import Weapon from '../Weapon/Weapon.js'
+import { AssaultResult } from './AssaultResult.js'
 import Attack from './Attack.js'
 
 export default class Melee implements Attack {
@@ -11,20 +12,22 @@ export default class Melee implements Attack {
     this.weapon = weapon
   }
 
-  resolve(target: Fighter): void{
+   
+  resolve(target: Fighter): AssaultResult{
     //tirar dados
     const attackResult = Throw.dice(this.chance)
 
     const isSuccessful = attackResult >= ThrowResult.EASY
    
-    const canDefence = target.defend(attackResult)
-    console.log(`attack result: ${attackResult} can be defended? ${canDefence}`)
-    if (isSuccessful && !canDefence) {
-      this.applyDamage(target)
-    }
+    return target.defend(attackResult)
+
+    // console.log(`attack result: ${attackResult} can be defended? ${canDefence}`)
+    // if (isSuccessful && !canDefence) {
+    //   this.applyDamage(target)
+    // }
   }
 
-  private applyDamage(target): void {
+  applyDamage(target): void {
     const damage = this.weapon.getDamage()
     target.injure(damage)
   }

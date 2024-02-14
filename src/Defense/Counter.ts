@@ -2,23 +2,21 @@ import { AssaultResult } from '../Attack/AssaultResult.js'
 import Throw, { ThrowResult } from '../Throw.js'
 import Defense from './Defense.js'
 
-export default class Dodge implements Defense {
+export default class Counter implements Defense {
   private chance : number
-
+  
   constructor(chance) {
       this.chance = chance
   }
 
   canCounterAttack(): boolean {
-    return false
+    return true
   }
 
   resolve(attackResult: ThrowResult): AssaultResult {
     const passiveResult = Throw.dice(this.chance)
-    const canDefence = passiveResult >= attackResult
-    
-    return canDefence ? 
-      AssaultResult.DEFENDED : 
-      AssaultResult.ATTACKED
+    const canCounter = passiveResult > attackResult
+
+    return canCounter ? AssaultResult.COUNTERED : AssaultResult.ATTACKED
   }
 }
