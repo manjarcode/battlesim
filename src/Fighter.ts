@@ -43,8 +43,8 @@ export default class Fighter {
     }
   }
 
-  defend(attackResult: ThrowResult): AssaultResult {
-    return this.defense.resolve(attackResult)
+  defend(attack: Attack, attackResult: ThrowResult): AssaultResult {
+    return this.defense.resolve(attack, attackResult)
   }
 
   applyDamage(target): void {

@@ -12,17 +12,19 @@ export default class Melee implements Attack {
     this.weapon = weapon
   }
 
-   
   resolve(target: Fighter): AssaultResult{
-    //tirar dados
     const attackResult = Throw.dice(this.chance)
-
-    return target.defend(attackResult)
+    
+    return target.defend(this, attackResult)
   }
 
   applyDamage(target): void {
     const damage = this.weapon.getDamage()
     target.injure(damage)
+  }
+
+  canBeCountered(): boolean {
+    return true
   }
 }
 

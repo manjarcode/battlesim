@@ -5,4 +5,6 @@ export default interface Attack {
   resolve(target: Fighter): AssaultResult
   
   applyDamage(target): void
+
+  canBeCountered(): boolean
 }

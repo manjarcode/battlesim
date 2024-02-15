@@ -1,8 +1,9 @@
 import { AssaultResult } from '../Attack/AssaultResult.js'
+import Attack from '../Attack/Attack.js'
 import Throw, { ThrowResult } from '../Throw.js'
 import Defense from './Defense.js'
 
-export default class Dodge implements Defense {
+export default class AlwaysDodge implements Defense {
   private chance : number
 
   constructor(chance) {
@@ -13,7 +14,7 @@ export default class Dodge implements Defense {
     return false
   }
 
-  resolve(attackResult: ThrowResult): AssaultResult {
+  resolve(attack: Attack, attackResult: ThrowResult): AssaultResult {
     const passiveResult = Throw.dice(this.chance)
     const canDefence = passiveResult >= attackResult
     
