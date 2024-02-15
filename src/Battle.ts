@@ -1,15 +1,25 @@
 import Fighter from "./Fighter"
 import Group from "./Group"
 
+const ROUNT_LIMIT = 100
+
 export default class Battle {
-  simulate(groups: Group[]) {
+  private round: number
+  private winner: Group | null
+
+  constructor() {
+    this.round = 0
+    this.winner = null
+  }
+
+  simulate(firstGroup: Group, secondGroup: Group) {
+    const groups = [firstGroup, secondGroup]
     const sorted = this.sort(groups)
   
-    const ROUNT_LIMIT = 100
   
-    let round = 1
-    while (this.allAlive(groups) && round < ROUNT_LIMIT) {
-      console.log(`Round ${round}`)
+    this.round = 1
+    while (this.allAlive(firstGroup, secondGroup) && this.round < ROUNT_LIMIT) {
+      console.log(`Round ${this.round}`)
       sorted.forEach(fighter => {
         if (fighter.isAlive()) {
           const rivalGroup = this.pickRivalGroup(groups, fighter)
@@ -17,23 +27,20 @@ export default class Battle {
         }
       })
       console.log('\n')
-      round++
+      this.round++
     }
   
-    const winner = groups.find(f => f.isAlive())
-  
-    if (winner) {
-      console.log(`Winner is ${winner.getName()}`)
-    }
-  
-    if (round === ROUNT_LIMIT) {
-        console.log('Tied game!')
-    }
-    console.log('End of the game')
+    this.findWinner(groups)
+
+    console.log('End of the battle')
   }
 
-  private allAlive(groups: Group[]) {
-    return groups.every(g => g.isAlive())
+  getWinner() {
+    return this.winner
+  }
+  
+  private allAlive(firstGroup: Group, secondGroup: Group) {
+    return firstGroup.isAlive() && secondGroup.isAlive()
   }
 
   private sort(groups: Group[]) {
@@ -43,5 +50,17 @@ export default class Battle {
   
   private pickRivalGroup(groups: Group[], current: Fighter) {
     return groups.find(g => g.getFighters().some(f => f !== current))
+  }
+
+  private findWinner(groups: Group[]) {
+    const winner = groups.find(f => f.isAlive())
+    if (winner) {
+      console.log(`Winner is ${winner.getName()}`)
+      this.winner = winner
+    }
+
+    if (this.round === ROUNT_LIMIT) {
+      console.log('Tied game!')
+    }
   }
 }

@@ -7,7 +7,7 @@ import Defense from './Defense/Defense.js'
 import Dodge from './Defense/Dodge.js'
 import Group from './Group.js'
 import Counter from './Defense/Counter.js'
-import Battle from './Battle.js'
+import War from './War.js'
 
 function createFighter (name: string, attackChance: number, weapon: Weapon, defence: Defense, health: number, initiative: number) {
   const attack = new Melee(attackChance, weapon )
@@ -22,10 +22,11 @@ function createBeastTeam () {
 
 function createPlayersTeam () {
   return new Group('Players Team', [
-    createFighter('Addison', 40, new Sword(), new Dodge(60), 14, 50),
-    createFighter('James Westmore', 45, new Sword(), new Dodge(40), 13, 70)
+    createFighter('Addison Kleeman', 40, new Sword(), new Dodge(60), 14, 50),
+    createFighter('James Westmore', 45, new Sword(), new Dodge(40), 13, 70),
+    createFighter('Christopher Durban', 45, new Sword(), new Dodge(30), 12, 30)
   ])
 }
 
-const battle = new Battle()
-battle.simulate([createBeastTeam(), createPlayersTeam()])
+const war = new War(createBeastTeam, createPlayersTeam)
+war.simulate(1000)
