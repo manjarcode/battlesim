@@ -11,6 +11,13 @@ export default class Melee implements Attack {
     this.chance = chance
     this.weapon = weapon
   }
+  canBeDefended(): boolean {
+    return true
+  }
+
+  canBeCountered(): boolean {
+    return true
+  }
 
   resolve(target: Fighter): AssaultResult{
     const attackResult = Throw.dice(this.chance)
@@ -23,8 +30,6 @@ export default class Melee implements Attack {
     target.injure(damage)
   }
 
-  canBeCountered(): boolean {
-    return true
-  }
+
 }
 

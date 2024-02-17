@@ -1,6 +1,6 @@
 import { AssaultResult } from "../Attack/AssaultResult.js"
 import Attack from "../Attack/Attack.js"
-import Throw from "../Throw.js"
+import Throw, { ThrowResult } from "../Throw.js"
 import Defense from "./Defense.js"
 
 export default class CounterOrDodgeDefense implements Defense {
@@ -15,6 +15,10 @@ export default class CounterOrDodgeDefense implements Defense {
     }
 
     resolve(attack: Attack, attackResult: number): AssaultResult {
+      //smells bad
+      if (!attack.canBeDefended()) {
+        return attackResult > ThrowResult.FAIL ? AssaultResult.ATTACKED : AssaultResult.DEFENDED
+      }
       const canBeCountered = attack.canBeCountered()
       return canBeCountered ? this.resolveCounter(attackResult) : this.resolveDodge(attackResult)
     }

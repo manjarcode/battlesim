@@ -13,15 +13,6 @@ export default class War {
     this.winners = {}
   }
 
-  assault(): Group | null {
-    const firstGroup = this.firstGroupFactory()
-    const secondGroup = this.secondGroupFactory()
-
-    const battle = new Battle()
-    battle.simulate(firstGroup, secondGroup)
-    return battle.getWinner()
-  }
-
   simulate(rounds): void{
     for (let i = 0; i < rounds; i++)
     {
@@ -32,8 +23,18 @@ export default class War {
       }
     }
 
-    console.log(this.winners)
+    return this.getWinners()
   }
+
+  assault(): Group | null {
+    const firstGroup = this.firstGroupFactory()
+    const secondGroup = this.secondGroupFactory()
+
+    const battle = new Battle()
+    battle.simulate(firstGroup, secondGroup)
+    return battle.getWinner()
+  }
+
 
   applyWinner(winner: Group): void {
     const name = winner.getName()
@@ -45,5 +46,18 @@ export default class War {
     {
       this.winners[name] = 1
     }
+  }
+
+  getWinners(): any {
+    const copy = Object.assign({}, this.winners)
+    const battlesPerTeam = Object.values(copy) as number[]
+    const untiedBattles = battlesPerTeam.reduce((acc: number, val:number) => acc + val, 0)
+
+    for (let team in copy)
+    {
+      copy[team] = `${Math.round(copy[team] / untiedBattles * 100)}%`
+    }
+
+    return copy
   }
 }

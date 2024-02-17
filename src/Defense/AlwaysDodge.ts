@@ -15,6 +15,11 @@ export default class AlwaysDodge implements Defense {
   }
 
   resolve(attack: Attack, attackResult: ThrowResult): AssaultResult {
+    //smells bad
+    if (!attack.canBeDefended()) {
+      return attackResult > ThrowResult.FAIL ? AssaultResult.ATTACKED : AssaultResult.DEFENDED
+    }
+
     const passiveResult = Throw.dice(this.chance)
     const canDefence = passiveResult >= attackResult
     

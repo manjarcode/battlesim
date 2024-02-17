@@ -7,4 +7,6 @@ export default interface Attack {
   applyDamage(target): void
 
   canBeCountered(): boolean
+
+  canBeDefended(): boolean
 }

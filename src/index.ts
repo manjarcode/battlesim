@@ -8,25 +8,55 @@ import AlwaysDodge from './Defense/AlwaysDodge.js'
 import Group from './Group.js'
 import CounterOrDodgeDefense from './Defense/CounterOrDodgeDefense.js'
 import War from './War.js'
+import Firearm from './Attack/Firearm.js'
+import Revolver from './Weapon/Revolver.js'
+import Attack from './Attack/Attack.js'
 
-function createFighter (name: string, attackChance: number, weapon: Weapon, defence: Defense, health: number, initiative: number) {
-  const attack = new Melee(attackChance, weapon )
+function createRevolver(skill: number) : Attack {
+  return new Firearm(skill,
+    new Revolver()
+  )
+}
+
+function createSword(skill: number) : Attack {
+  return new Melee(skill,
+    new Sword()
+  )
+}
+
+function createClaw(skill: number) : Attack {
+  return new Melee(skill,
+    new Claw()
+  )
+}
+
+function createFighter (name: string, attack: Attack, defence: Defense, health: number, initiative: number) {
   return new Fighter(name, attack, defence, health, initiative)
 }
 
 function createBeastTeam () {
   return new Group('Beast Team', [
-    createFighter('The Beast', 50, new Claw(), new CounterOrDodgeDefense(30), 50, 60)
+    createFighter('The Beast', createClaw(50), new CounterOrDodgeDefense(30), 200, 60)
   ])
 }
 
 function createPlayersTeam () {
   return new Group('Players Team', [
-    createFighter('Addison Kleeman', 40, new Sword(), new AlwaysDodge(60), 14, 50),
-    createFighter('James Westmore', 45, new Sword(), new AlwaysDodge(40), 13, 70),
-    createFighter('Christopher Durban', 45, new Sword(), new AlwaysDodge(30), 12, 30)
+    createFighter('Addison Kleeman', createSword(40), new AlwaysDodge(60), 14, 50),
+    createFighter('James Westmore', createSword(45), new AlwaysDodge(40), 13, 70),
+    createFighter('Christopher Durban', createSword(45), new AlwaysDodge(30), 12, 30)
   ])
 }
 
-const war = new War(createBeastTeam, createPlayersTeam)
-war.simulate(1000)
+function createFirearmedPlayersTeam() {
+  return new Group('Players Team', [
+    createFighter('Addison Kleeman', createRevolver(60), new AlwaysDodge(60), 14, 50),
+    createFighter('James Westmore', createRevolver(45), new AlwaysDodge(40), 13, 70),
+    createFighter('Christopher Durban', createRevolver(30), new AlwaysDodge(30), 12, 30)
+  ])
+
+}
+
+const war = new War(createBeastTeam, createFirearmedPlayersTeam)
+const result = war.simulate(1)
+console.log(result)
