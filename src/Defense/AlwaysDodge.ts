@@ -4,10 +4,10 @@ import Throw, { ThrowResult } from '../Throw.js'
 import Defense from './Defense.js'
 
 export default class AlwaysDodge implements Defense {
-  private chance : number
+  private skill : number
 
-  constructor(chance) {
-      this.chance = chance
+  constructor(skill) {
+      this.skill = skill
   }
 
   canCounterAttack(): boolean {
@@ -20,7 +20,7 @@ export default class AlwaysDodge implements Defense {
       return attackResult > ThrowResult.FAIL ? AssaultResult.ATTACKED : AssaultResult.DEFENDED
     }
 
-    const passiveResult = Throw.dice(this.chance)
+    const passiveResult = Throw.dice(this.skill)
     const canDefence = passiveResult >= attackResult
     
     return canDefence ? 

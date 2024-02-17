@@ -1,9 +1,9 @@
 export default class Throw {
 
-  static dice(chance: number): ThrowResult {
-    const easy = chance
-    const medium = Math.floor(chance / 2)
-    const hard  = Math.floor(chance / 5)
+  static dice(skill: number): ThrowResult {
+    const easy = skill
+    const medium = Math.floor(skill / 2)
+    const hard  = Math.floor(skill / 5)
 
     const value = Dice.roll()
     

@@ -5,10 +5,10 @@ import { AssaultResult } from './AssaultResult.js'
 import Attack from './Attack.js'
 
 export default class Melee implements Attack {
-  private chance: number
+  private skill: number
   private weapon: Weapon
-  constructor(chance: number, weapon) {
-    this.chance = chance
+  constructor(skill: number, weapon) {
+    this.skill = skill
     this.weapon = weapon
   }
   canBeDefended(): boolean {
@@ -20,7 +20,7 @@ export default class Melee implements Attack {
   }
 
   resolve(target: Fighter): AssaultResult{
-    const attackResult = Throw.dice(this.chance)
+    const attackResult = Throw.dice(this.skill)
     
     return target.defend(this, attackResult)
   }
