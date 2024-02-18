@@ -1,4 +1,4 @@
-type Weapon = {
-	getDamage(): number;
-};
-export default Weapon;
+interface Weapon {
+  getDamage: ()=> number
+}
+export default Weapon
