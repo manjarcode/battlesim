@@ -1,8 +1,8 @@
-import { Dice } from "../Throw.js";
-import Weapon  from "./Weapon.js";
+import {Dice} from '../Throw.js';
+import type Weapon from './Weapon.js';
 
 export default class Claw implements Weapon {
-  getDamage(): number {
-    return Dice.d6()
-  }
+	getDamage(): number {
+		return Dice.d6();
+	}
 }

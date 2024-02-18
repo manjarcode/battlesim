@@ -1,12 +1,13 @@
-import Fighter from "../Fighter";
-import { AssaultResult } from "./AssaultResult";
+import type Fighter from '../Fighter';
+import {type AssaultResult} from './AssaultResult';
 
-export default interface Attack {
-  resolve(target: Fighter): AssaultResult
-  
-  applyDamage(target): void
+type Attack = {
+	resolve(target: Fighter): AssaultResult;
 
-  canBeCountered(): boolean
+	applyDamage(target): void;
 
-  canBeDefended(): boolean
-}
+	canBeCountered(): boolean;
+
+	canBeDefended(): boolean;
+};
+export default Attack;

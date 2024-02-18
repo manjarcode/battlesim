@@ -1,9 +1,10 @@
-import { AssaultResult } from '../Attack/AssaultResult.js'
-import Attack from '../Attack/Attack.js'
-import Throw, { ThrowResult } from '../Throw.js'
+import {type AssaultResult} from '../Attack/AssaultResult.js';
+import type Attack from '../Attack/Attack.js';
+import {type ThrowResult} from '../Throw.js';
 
-export default interface Defense {
-  resolve(attack: Attack, attackResult: ThrowResult): AssaultResult
+type Defense = {
+	resolve(attack: Attack, attackResult: ThrowResult): AssaultResult;
 
-  canCounterAttack(): boolean
-}
+	canCounterAttack(): boolean;
+};
+export default Defense;

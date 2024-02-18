@@ -1,3 +1,4 @@
-export default interface Weapon {
-  getDamage(): number
-}
+type Weapon = {
+	getDamage(): number;
+};
+export default Weapon;

@@ -1,23 +1,17 @@
-import Fighter from './Fighter.js'
+import type Fighter from './Fighter.js';
 
 export default class Group {
-  private name: string
-  private fighters: Fighter[]
+	constructor(private readonly name: string, private readonly fighters: Fighter[]) {}
 
-  constructor(name: string, fighters: Fighter[]) {
-    this.name = name
-    this.fighters = fighters
-  }
+	getFighters() {
+		return this.fighters;
+	}
 
-  getFighters() {
-    return this.fighters
-  }
+	getName() {
+		return this.name;
+	}
 
-  getName() {
-    return this.name
-  }
-  
-  isAlive() {
-    return this.fighters.some(fighter => fighter.isAlive())
-  }
+	isAlive() {
+		return this.fighters.some(fighter => fighter.isAlive());
+	}
 }
